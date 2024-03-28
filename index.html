@@ -1,9 +1,51 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 
-<body>
-  <h1>Sebastian Schult</h1>
-  <p>Welcome to my website!</p>
-  <img src="https://content.codecademy.com/articles/github-pages-via-web-app/happy-ice-cream.gif" />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pokedex</title>
+    <link rel="icon" type="image/vnd.icon" href="./img/pokeball-the-poke-basic-league-accepting-challengers-9.png">
+    <link rel="stylesheet" href="./src/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="ebe0f90b-c31f-4378-8e9a-a7df93a1e4e2"
+        data-blockingmode="auto" type="text/javascript"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="./src/data.js"></script>
+    <script src="./src/template.js"></script>
+    <script src="./src/render.js"></script>
+    <script src="./src/app.js" defer></script>
+</head>
+
+<body onload="init()">
+    <header>
+        <img class="rounded float-start mx-auto" src="./img/pngegg.png" alt="">
+        <h1>POKEDÈX</h1>
+        <input type="text" id="searchInput" placeholder="suchen..." oninput="searchPokemons()">
+    </header>
+    <main>
+        <div id="pokemonContainer">
+            <!-- dislpay Pokemon cards -->
+            <div id="pokemonCard" class="pokemonCard d-flex flex-wrap justify-content-center pt-3 pb-3"></div>
+            <div id="pokemonDetail" class="pokemonDetail d-flex justify-content-center align-items-center d-none">
+                <div id="pokemonDetailCard"></div>
+            </div>
+        </div>
+        <div id="loadingScreen"
+            class="loadingScreen d-flex justify-content-center align-items-center flex-column gap-5 d-none">
+            Benötigte Daten werden geladen... <img src="./img/Y8HK.gif" alt=""><br>Bitte einen Augenblick Geduld
+        </div>
+
+    </main>
+
+    <button class="btn btn-lg btn-primary btn-danger d-grid gap-8 col-6 mx-auto" style="margin: 16px; max-width: 200px;"
+        onclick="load20More()">mehr laden</button>
+
+
 </body>
 
 </html>
