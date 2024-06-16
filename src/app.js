@@ -206,11 +206,7 @@ function hideLoadingScreen() {
     }
 }
 
-// NOT WORKING AND GOT NO SOLUTION THAT IT WORKS UNTIL NOW !! 
-// Add event listener to handle click outside the pokemonDetailCard
-function handleOutsideClick(event) {
-    const pokemonDetailCard = document.getElementById('pokemonDetailCard');
-    if (!pokemonDetailCard.contains(event.target)) {
-        closeDetails();
-    }
+
+function doNotClose(event) {
+    event.stopPropagation();
 }
