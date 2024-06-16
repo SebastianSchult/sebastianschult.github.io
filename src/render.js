@@ -92,7 +92,7 @@ async function fetchPokemonData() {
             renderPokemonCards(value.id - 1);
         }
       }
-
+    renderAllPokemonData();
     hideLoadingScreen();
 
     fetchAmountLoaded += 20; 
