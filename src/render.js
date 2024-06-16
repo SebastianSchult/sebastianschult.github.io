@@ -1,9 +1,9 @@
 function renderPokemonCards(id) {
     document.getElementById('pokemonCard').innerHTML += createPokemonCardHTML(id);
-   for (let i = 0; i < fetchedPokemon[id]['types'].length; i++) {
-    document.getElementById(`pokemonTypes${id}`).innerHTML += /*html*/`
-    <span class="badge text-bg-secondary rounded-pill text-bg-light" style="opacity: 0.5; box-shadow: #000 0px 0px 2px;">
-    ${fetchedPokemon[id]['types'][i]['type']['name']} </span>`
+    for (let i = 0; i < fetchedPokemon[id]['types'].length; i++) {
+        document.getElementById(`pokemonTypes${id}`).innerHTML += /*html*/`
+            <span class="badge text-bg-secondary rounded-pill text-bg-light" style="opacity: 0.5; box-shadow: #000 0px 0px 2px;">
+                ${fetchedPokemon[id]['types'][i]['type']['name']} </span>`
     }
 }
 
@@ -76,15 +76,22 @@ async function loadPokemonNames() {
 async function fetchPokemonData() {
     showLoadingScreen();
 
-    const newPokemonData = [];
+    let newPokemonData = [];
     const offset = fetchAmountLoaded;
     for (let i = offset; i < Math.min(fetchAmount, (pokemonNames.length - fetchAmountLoaded)); i++) {
         const id = i;
         if (!fetchedPokemon[id] && !document.getElementById(`pokemonCard${id + 1}`)) {
-            await fetchPokemon(id);
-            renderPokemonCards([id]);
+            newPokemonData.push(fetchPokemon(id))
         }
     }
+
+    await Promise.all(newPokemonData);
+
+    for (const [_, value] of Object.entries(fetchedPokemon)) {
+        if (!document.getElementById(`pokemonCard` + value.id)) {
+            renderPokemonCards(value.id - 1);
+        }
+      }
 
     hideLoadingScreen();
 
